@@ -1,0 +1,39 @@
+{
+  "name": "ethereum-base-token",
+  "version": "1.0.0",
+  "description": "ERC-20 token deployable on Ethereum and Base",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:ethereum": "hardhat run scripts/deploy.js --network ethereum",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "deploy:base": "hardhat run scripts/deploy.js --network base",
+    "deploy:base-sepolia": "hardhat run scripts/deploy.js --network base-sepolia",
+    "deploy:localhost": "hardhat run scripts/deploy.js --network localhost",
+    "create-pool:base": "hardhat run scripts/createPool.js --network base",
+    "add-liquidity:base": "hardhat run scripts/addLiquidity.js --network base",
+    "remove-liquidity:base": "hardhat run scripts/removeLiquidity.js --network base",
+    "create-pool:ethereum": "hardhat run scripts/createPool.js --network ethereum",
+    "add-liquidity:ethereum": "hardhat run scripts/addLiquidity.js --network ethereum",
+    "remove-liquidity:ethereum": "hardhat run scripts/removeLiquidity.js --network ethereum",
+    "bridge-deposit": "hardhat run scripts/bridgeDeposit.js --network ethereum",
+    "bridge-withdraw": "hardhat run scripts/bridgeWithdraw.js --network base",
+    "bridge-status": "hardhat run scripts/bridgeStatus.js",
+    "bridge-finalize": "hardhat run scripts/bridgeFinalize.js --network ethereum",
+    "treasury": "hardhat run scripts/treasuryManager.js"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "hardhat": "^2.26.1"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0",
+    "@uniswap/v3-core": "^1.0.1",
+    "@uniswap/v3-periphery": "^1.4.4",
+    "@uniswap/v3-sdk": "^3.25.2",
+    "@uniswap/sdk-core": "^7.7.2",
+    "dotenv": "^17.2.0",
+    "jsbi": "^4.3.2"
+  }
+}

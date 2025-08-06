@@ -1,0 +1,14 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "tokenAddress": "0x42128Ea03543239CFa813822F7C6c629112bB3a6",
+  "tokenName": "MyToken",
+  "tokenSymbol": "MTK",
+  "maxSupply": "1000000000.0",
+  "initialSupply": "200000000.0",
+  "currentSupply": "200000000.0",
+  "treasury": "0xC57941a8228caf1E0B178F1F69cB03564DfD3a56",
+  "owner": "0xC57941a8228caf1E0B178F1F69cB03564DfD3a56",
+  "deployer": "0xC57941a8228caf1E0B178F1F69cB03564DfD3a56",
+  "deployedAt": "2025-07-22T21:45:13.546Z"
+}
