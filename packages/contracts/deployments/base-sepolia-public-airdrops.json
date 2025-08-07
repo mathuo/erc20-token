@@ -1,0 +1,12 @@
+{
+  "network": "base-sepolia",
+  "chainId": 84532,
+  "tokenAddress": "0xCD868868d558e610091a249451ce95689038b421",
+  "deployments": {
+    "publicAirdrop": "0x84ed9cFaBC7639bfd4e1771E71387e394e16762b",
+    "conditionalAirdrop": "0xe6EB8c0Fad839f17a4Db9dF9A49058DE2877eCf6"
+  },
+  "deployer": "0xC57941a8228caf1E0B178F1F69cB03564DfD3a56",
+  "timestamp": "2025-08-06T22:05:34.663Z",
+  "blockNumber": 29374823
+}

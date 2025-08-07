@@ -1,230 +1,321 @@
-# Ethereum & Base DeFi Token Suite
+# 🚀 DeFi Token Suite
 
-A comprehensive ERC-20 token implementation with advanced DeFi features, deployable on Ethereum and Base networks. This project includes token deployment, Uniswap V3 liquidity management, cross-chain bridging, and treasury management tools.
+A comprehensive monorepo for DeFi token management with smart contracts and web interface.
 
-## 🚀 Features
+## 📋 Overview
 
-### Token Features
-- **ERC-20 Standard**: Full compliance with ERC-20 token standard
-- **OpenZeppelin Integration**: Built with battle-tested OpenZeppelin contracts
-- **Multi-Network Support**: Deploy on Ethereum mainnet, Sepolia testnet, Base mainnet, and Base Sepolia testnet
-- **Mintable**: Owner can mint new tokens
-- **Burnable**: Users can burn their own tokens
-- **Permit Support**: EIP-2612 permit functionality for gasless approvals
-- **Ownable**: Access control for administrative functions
+This monorepo contains:
+- **Smart Contracts**: ERC-20 tokens with advanced airdrop functionality
+- **Web Interface**: Next.js frontend for token management
+- **Multi-Network Support**: Ethereum, Base, and testnets
+- **Complete DeFi Stack**: Airdrops, liquidity, bridging, treasury
 
-### DeFi Integrations
-- **Uniswap V3 Integration**: Create pools and manage liquidity positions
-- **Cross-Chain Bridging**: Bridge tokens between Ethereum and Base
-- **Treasury Management**: Advanced treasury operations and monitoring
-- **Liquidity Management**: Add, remove, and optimize liquidity positions
-- **Trading Tools**: Swap functionality and pool visualization
+## 🏗️ Project Structure
 
-### Advanced Scripts
-- **Pool Management**: Create pools, add/remove liquidity, visualize positions
-- **Bridge Operations**: Deposit, withdraw, status checking, and finalization
-- **Trading Tools**: Execute swaps, test trades, and analyze pool data
-- **Monitoring**: Check balances, circulation, and cross-network comparisons
-
-## 📋 Contract Configuration
-
-- **Name**: MyToken (configurable via .env)
-- **Symbol**: MTK (configurable via .env)
-- **Decimals**: 18
-- **Max Supply**: 1,000,000,000 tokens (configurable)
-- **Initial Supply**: 200,000,000 tokens (configurable)
-- **Minting**: Only owner can mint new tokens
-- **Burning**: Any user can burn their tokens or approved tokens
-
-## Setup
-
-1. Install dependencies:
-```bash
-npm install
+```
+defi-token-suite/
+├── packages/
+│   ├── contracts/          # Smart contracts (Hardhat)
+│   │   ├── contracts/      # Solidity contracts
+│   │   ├── scripts/        # Deployment & management scripts
+│   │   ├── test/          # Contract tests
+│   │   └── deployments/   # Deployment artifacts
+│   └── frontend/          # Web interface (Next.js)
+│       ├── src/
+│       │   ├── app/       # Next.js app router
+│       │   ├── components/ # React components
+│       │   ├── lib/       # Utilities & ABIs
+│       │   └── hooks/     # Custom React hooks
+│       └── public/        # Static assets
+├── package.json           # Root workspace config
+└── README.md             # This file
 ```
 
-2. Copy environment variables:
+## ⚡ Quick Start
+
+### Prerequisites
+- Node.js 18+
+- npm 8+
+- Git
+
+### Installation
+
 ```bash
-cp .env.example .env
+# Clone the repository
+git clone https://github.com/your-username/defi-token-suite.git
+cd defi-token-suite
+
+# Install all dependencies
+npm run install:all
+
+# Or install individually
+npm install                    # Root workspace
+npm run install:contracts      # Contracts only
+npm run install:frontend       # Frontend only
 ```
 
-3. Edit `.env` file with your configuration:
-   - Add your private key (without 0x prefix)
-   - Add RPC URLs for networks you want to use
-   - Add API keys for contract verification
+### Development
 
-## 🛠 Usage
-
-### Basic Operations
-
-#### Compile Contracts
 ```bash
-npm run compile
+# Start both contracts and frontend in development mode
+npm run dev
+
+# Or start individually
+npm run dev:contracts          # Local Hardhat node
+npm run dev:frontend           # Next.js dev server
 ```
 
-#### Run Tests
+### Build & Test
+
 ```bash
-npm run test
+# Build everything
+npm run build
+
+# Test everything  
+npm test
+
+# Or build/test individually
+npm run build:contracts        # Compile contracts
+npm run build:frontend         # Build Next.js app
+npm run test:contracts         # Run contract tests
+npm run test:frontend          # Run frontend tests
 ```
 
-### 📱 Token Deployment
+## 🏗️ Smart Contracts
 
-#### Local Development
-```bash
-npx hardhat node
-npm run deploy:localhost
-```
+### Core Contracts
 
-#### Production Networks
+- **MyToken.sol**: ERC-20 token with minting, burning, and treasury
+- **BatchAirdrop.sol**: Direct batch token distribution
+- **MerkleAirdrop.sol**: Scalable merkle tree-based airdrops  
+- **PublicAirdrop.sol**: Open claim airdrops with conditions
+- **ConditionalAirdrop.sol**: Advanced conditional claim logic
+- **SwapHelper.sol**: Uniswap V3 integration utilities
+
+### Deployment
+
 ```bash
-# Ethereum Mainnet
+# Deploy to testnets
+npm run deploy:sepolia
+npm run deploy:base-sepolia
+
+# Deploy to mainnets
 npm run deploy:ethereum
-
-# Base Mainnet
 npm run deploy:base
 ```
 
-#### Test Networks
+### Contract Management
+
 ```bash
-# Sepolia Testnet
-npm run deploy:sepolia
+# Navigate to contracts package
+cd packages/contracts
 
-# Base Sepolia Testnet
-npm run deploy:base-sepolia
+# Airdrop operations
+npm run deploy-airdrop         # Deploy airdrop contracts
+npm run batch-airdrop          # Execute batch airdrop
+npm run create-merkle-airdrop  # Create merkle campaign
+npm run create-public-campaign # Create public claim campaign
+
+# Liquidity operations  
+npm run create-pool:base       # Create Uniswap pool
+npm run add-liquidity:base     # Add liquidity
+
+# Bridge operations
+npm run bridge-deposit         # Bridge to Base
+npm run bridge-withdraw        # Bridge to Ethereum
+
+# Status monitoring
+npm run airdrop-status         # Check airdrop status
+npm run public-airdrop-status  # Check public campaigns
 ```
 
-### 🏊 Liquidity Management
+## 🖥️ Web Interface
 
-#### Create Uniswap V3 Pool
+### Tech Stack
+- **Next.js 14**: React framework with app router
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first styling
+- **Wagmi**: React hooks for Ethereum
+- **RainbowKit**: Wallet connection UI
+- **Ethers.js**: Ethereum library
+
+### Features
+
+- 🔗 **Wallet Connection**: MetaMask, WalletConnect, and more
+- 🪙 **Token Management**: Deploy, mint, burn, transfer
+- 🎁 **Airdrop Interface**: All airdrop types with UI
+- 💧 **Liquidity Tools**: Uniswap V3 position management
+- 🌉 **Bridge Interface**: Cross-chain token transfers
+- 📊 **Analytics Dashboard**: Token metrics and history
+- 🎨 **Responsive Design**: Mobile-first interface
+
+### Development
+
 ```bash
-# Create pool on Base
-npm run create-pool:base
+cd packages/frontend
 
-# Create pool on Ethereum
-npm run create-pool:ethereum
+# Environment setup
+cp .env.example .env.local
+# Edit .env.local with your configuration
+
+# Development server
+npm run dev
+
+# Build for production
+npm run build
+npm run start
 ```
 
-#### Add Liquidity
+## 🌐 Supported Networks
+
+| Network | Chain ID | Status | Features |
+|---------|----------|--------|----------|
+| Ethereum | 1 | ✅ Production | All features |
+| Base | 8453 | ✅ Production | All features |
+| Sepolia | 11155111 | ✅ Testnet | All features |
+| Base Sepolia | 84532 | ✅ Testnet | All features |
+| Localhost | 31337 | 🔧 Development | All features |
+
+## 🎯 Airdrop Types
+
+### 1. Batch Airdrops
+- Direct token distribution to recipients
+- Owner pays all gas costs
+- Best for: < 500 recipients
+
+### 2. Merkle Airdrops  
+- Recipients claim using merkle proofs
+- Cryptographically verified eligibility
+- Best for: > 1000 recipients
+
+### 3. Public Airdrops
+- Anyone can claim (with conditions)
+- No pre-defined recipient list
+- Best for: Community building
+
+## 🔐 Environment Configuration
+
+### Contracts (.env)
 ```bash
-# Add liquidity on Base
-npm run add-liquidity:base
+# Network RPCs
+ETHEREUM_RPC_URL=https://eth-mainnet.alchemyapi.io/v2/your-key
+BASE_RPC_URL=https://mainnet.base.org
+SEPOLIA_RPC_URL=https://ethereum-sepolia-rpc.publicnode.com
 
-# Add liquidity on Ethereum
-npm run add-liquidity:ethereum
+# Deployment
+PRIVATE_KEY=your_private_key_without_0x_prefix
+ETHERSCAN_API_KEY=your_etherscan_key
+BASESCAN_API_KEY=your_basescan_key
+
+# Token Configuration
+TOKEN_NAME=MyToken
+TOKEN_SYMBOL=MTK
+MAX_SUPPLY=1000000000
+INITIAL_SUPPLY=200000000
 ```
 
-#### Remove Liquidity
+### Frontend (.env.local)
 ```bash
-# Remove liquidity on Base
-npm run remove-liquidity:base
+# WalletConnect
+NEXT_PUBLIC_PROJECT_ID=your_walletconnect_project_id
 
-# Remove liquidity on Ethereum
-npm run remove-liquidity:ethereum
+# Contract Addresses (auto-populated after deployment)
+NEXT_PUBLIC_TOKEN_ADDRESS_ETHEREUM=0x...
+NEXT_PUBLIC_TOKEN_ADDRESS_BASE=0x...
+NEXT_PUBLIC_BATCH_AIRDROP_ADDRESS=0x...
+NEXT_PUBLIC_MERKLE_AIRDROP_ADDRESS=0x...
 ```
 
-### 🌉 Cross-Chain Bridge Operations
+## 📚 Documentation
 
-#### Bridge from Ethereum to Base
+- **Contracts**: See `packages/contracts/README.md`
+- **Frontend**: See `packages/frontend/README.md`
+- **Guides**: 
+  - `UNISWAP_GUIDE.md` - Liquidity management
+  - `BRIDGE_GUIDE.md` - Cross-chain bridging  
+  - `TREASURY_GUIDE.md` - Treasury operations
+  - `CLAUDE.md` - Development workflow
+
+## 🧪 Testing
+
+### Contract Tests
 ```bash
-npm run bridge-deposit
+cd packages/contracts
+npm test                       # All tests
+npx hardhat test               # Hardhat test runner
+npm run coverage               # Coverage report
 ```
 
-#### Bridge from Base to Ethereum
+### Frontend Tests
 ```bash
-npm run bridge-withdraw
+cd packages/frontend  
+npm test                       # Jest tests
+npm run test:watch             # Watch mode
+npm run test:coverage          # Coverage report
 ```
 
-#### Check Bridge Status
+## 🚀 Deployment Guide
+
+### 1. Contract Deployment
 ```bash
-npm run bridge-status
+# 1. Configure environment
+cp packages/contracts/.env.example packages/contracts/.env
+# Edit packages/contracts/.env
+
+# 2. Deploy contracts
+npm run deploy:sepolia         # Test deployment
+npm run deploy:ethereum        # Production deployment
+
+# 3. Export ABIs for frontend
+cd packages/contracts
+npm run export-abis
 ```
 
-#### Finalize Bridge Transaction
+### 2. Frontend Deployment
 ```bash
-npm run bridge-finalize
-```
+# 1. Configure environment  
+cp packages/frontend/.env.example packages/frontend/.env.local
+# Edit packages/frontend/.env.local with contract addresses
 
-### 🏛 Treasury Management
-```bash
-npm run treasury
-```
-
-### 📊 Advanced Scripts
-
-The project includes many specialized scripts in the `scripts/` directory:
-
-- **Pool Analysis**: `visualizePool.js`, `checkPoolLiquidity.js`
-- **Trading**: `simpleSwap.js`, `testTrade.js`, `executeProperSwap.js`
-- **Monitoring**: `checkCirculation.js`, `compareNetworks.js`, `checkSepoliaBalance.js`
-- **Liquidity Optimization**: `addLiquidityFixed.js`, `addMinimalLiquidity.js`, `debugLiquidity.js`
-
-## Network Configuration
-
-The project is configured for the following networks:
-
-- **Ethereum Mainnet** (Chain ID: 1)
-- **Sepolia Testnet** (Chain ID: 11155111)
-- **Base Mainnet** (Chain ID: 8453)
-- **Base Sepolia Testnet** (Chain ID: 84532)
-
-## Contract Verification
-
-The deployment script automatically attempts to verify contracts on Etherscan/Basescan after deployment. Make sure to set the appropriate API keys in your `.env` file.
-
-## Security Considerations
-
-- Never commit your private key or `.env` file to version control
-- Test thoroughly on testnets before mainnet deployment
-- Consider using a hardware wallet or multisig for production deployments
-- Audit your contracts before deploying significant value
-
-## ⚙️ Configuration
-
-### Environment Variables
-
-Key configuration variables in `.env`:
-
-- **Token Configuration**: `TOKEN_NAME`, `TOKEN_SYMBOL`, `MAX_SUPPLY`, `INITIAL_SUPPLY`
-- **Network RPC URLs**: `ETHEREUM_RPC_URL`, `BASE_RPC_URL`, `SEPOLIA_RPC_URL`, `BASE_SEPOLIA_RPC_URL`
-- **API Keys**: `ETHERSCAN_API_KEY`, `BASESCAN_API_KEY`
-- **Uniswap Settings**: `TOKEN_ADDRESS`, `POOL_ADDRESS`, `INITIAL_PRICE`, `TOKEN_AMOUNT`, `ETH_AMOUNT`
-- **Bridge Settings**: `L1_TOKEN_ADDRESS`, `L2_TOKEN_ADDRESS`, `BRIDGE_AMOUNT`
-- **Treasury Addresses**: `TREASURY_ADDRESS`, `FEE_RECIPIENT`, `INITIAL_OWNER`
-
-### Customization
-
-To customize the project:
-
-1. **Token Contract**: Edit `contracts/MyToken.sol` to modify token features
-2. **Deployment**: Update `scripts/deploy.js` for custom deployment parameters
-3. **Tests**: Add tests in `test/MyToken.test.js` or create new test files
-4. **Scripts**: Modify existing scripts or create new ones for specific operations
-5. **Networks**: Add new networks in `hardhat.config.js`
-
-## 📁 Project Structure
-
-```
-├── contracts/          # Smart contracts
-├── scripts/           # Deployment and utility scripts
-│   ├── deploy.js      # Main deployment script
-│   ├── createPool.js  # Uniswap pool creation
-│   ├── bridge*.js     # Cross-chain bridge operations
-│   ├── *Liquidity.js  # Liquidity management
-│   └── treasury*.js   # Treasury operations
-├── test/             # Contract tests
-├── hardhat.config.js # Hardhat configuration
-├── .env.example      # Environment template
-└── package.json      # Dependencies and scripts
+# 2. Build and deploy
+npm run build:frontend
+# Deploy to Vercel, Netlify, or your hosting provider
 ```
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
+
+### Development Workflow
+1. Make changes in appropriate package
+2. Run tests: `npm test`
+3. Build: `npm run build`
+4. Lint: `npm run lint` (in frontend package)
+5. Commit with clear messages
 
 ## 📄 License
 
-MIT License - see LICENSE file for details
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **Documentation**: Check package-specific READMEs
+- **Issues**: Open GitHub issue with detailed description
+- **Discord**: Join our community (link coming soon)
+
+## 🔗 Links
+
+- **Live Demo**: https://defi-token-suite.vercel.app (coming soon)
+- **Contract Addresses**: See deployment files in `packages/contracts/deployments/`
+- **Block Explorers**: 
+  - [Ethereum](https://etherscan.io)
+  - [Base](https://basescan.org)
+  - [Sepolia](https://sepolia.etherscan.io)
+
+---
+
+**Built with ❤️ for the DeFi community**

@@ -1,0 +1,15 @@
+{
+  "campaignId": "2",
+  "campaignName": "Launch Airdrop",
+  "campaignType": "faucet",
+  "claimAmount": "100000000000000000000",
+  "totalBudget": "10000000000000000000000",
+  "claimAmountFormatted": "100.0",
+  "totalBudgetFormatted": "10000.0",
+  "durationDays": 30,
+  "contractAddress": "0x84ed9cFaBC7639bfd4e1771E71387e394e16762b",
+  "createdBy": "0xC57941a8228caf1E0B178F1F69cB03564DfD3a56",
+  "createdAt": "2025-08-07T07:21:25.050Z",
+  "transactionHash": "0x7f409aad84f480bf6181b833f3276f7f13cfe8a10caabd578c6f92ef8bbd1cf7",
+  "blockNumber": 29391498
+}

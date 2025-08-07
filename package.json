@@ -1,39 +1,53 @@
 {
-  "name": "ethereum-base-token",
+  "name": "defi-token-suite",
   "version": "1.0.0",
-  "description": "ERC-20 token deployable on Ethereum and Base",
-  "main": "index.js",
+  "description": "Complete DeFi token suite with smart contracts and web interface",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "compile": "hardhat compile",
-    "test": "hardhat test",
-    "deploy:ethereum": "hardhat run scripts/deploy.js --network ethereum",
-    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
-    "deploy:base": "hardhat run scripts/deploy.js --network base",
-    "deploy:base-sepolia": "hardhat run scripts/deploy.js --network base-sepolia",
-    "deploy:localhost": "hardhat run scripts/deploy.js --network localhost",
-    "create-pool:base": "hardhat run scripts/createPool.js --network base",
-    "add-liquidity:base": "hardhat run scripts/addLiquidity.js --network base",
-    "remove-liquidity:base": "hardhat run scripts/removeLiquidity.js --network base",
-    "create-pool:ethereum": "hardhat run scripts/createPool.js --network ethereum",
-    "add-liquidity:ethereum": "hardhat run scripts/addLiquidity.js --network ethereum",
-    "remove-liquidity:ethereum": "hardhat run scripts/removeLiquidity.js --network ethereum",
-    "bridge-deposit": "hardhat run scripts/bridgeDeposit.js --network ethereum",
-    "bridge-withdraw": "hardhat run scripts/bridgeWithdraw.js --network base",
-    "bridge-status": "hardhat run scripts/bridgeStatus.js",
-    "bridge-finalize": "hardhat run scripts/bridgeFinalize.js --network ethereum",
-    "treasury": "hardhat run scripts/treasuryManager.js"
+    "install:all": "npm install && npm run install:contracts && npm run install:frontend",
+    "install:contracts": "cd packages/contracts && npm install",
+    "install:frontend": "cd packages/frontend && npm install",
+    "build": "npm run build:contracts && npm run build:frontend",
+    "build:contracts": "cd packages/contracts && npm run compile",
+    "build:frontend": "cd packages/frontend && npm run build",
+    "test": "npm run test:contracts && npm run test:frontend",
+    "test:contracts": "cd packages/contracts && npm test",
+    "test:frontend": "cd packages/frontend && npm test",
+    "dev": "concurrently \"npm run dev:contracts\" \"npm run dev:frontend\"",
+    "dev:contracts": "cd packages/contracts && npm run node",
+    "dev:frontend": "cd packages/frontend && npm run dev",
+    "clean": "npm run clean:contracts && npm run clean:frontend",
+    "clean:contracts": "cd packages/contracts && rm -rf cache artifacts node_modules",
+    "clean:frontend": "cd packages/frontend && rm -rf .next node_modules dist",
+    "deploy:ethereum": "cd packages/contracts && npm run deploy:ethereum",
+    "deploy:base": "cd packages/contracts && npm run deploy:base",
+    "deploy:sepolia": "cd packages/contracts && npm run deploy:sepolia",
+    "deploy:base-sepolia": "cd packages/contracts && npm run deploy:base-sepolia"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
-    "hardhat": "^2.26.1"
+    "concurrently": "^8.2.2"
   },
-  "dependencies": {
-    "@openzeppelin/contracts": "^5.4.0",
-    "@uniswap/v3-core": "^1.0.1",
-    "@uniswap/v3-periphery": "^1.4.4",
-    "@uniswap/v3-sdk": "^3.25.2",
-    "@uniswap/sdk-core": "^7.7.2",
-    "dotenv": "^17.2.0",
-    "jsbi": "^4.3.2"
-  }
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/defi-token-suite.git"
+  },
+  "keywords": [
+    "defi",
+    "ethereum",
+    "base",
+    "tokens",
+    "airdrop",
+    "uniswap",
+    "bridge",
+    "monorepo"
+  ],
+  "license": "MIT",
+  "author": "Your Name"
 }

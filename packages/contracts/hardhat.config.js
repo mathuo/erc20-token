@@ -22,10 +22,12 @@ module.exports = {
       gasPrice: "auto",
     },
     sepolia: {
-      url: process.env.SEPOLIA_RPC_URL || "https://rpc.sepolia.org",
+      url: process.env.SEPOLIA_RPC_URL || "https://ethereum-sepolia-rpc.publicnode.com",
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 11155111,
-      gasPrice: "auto",
+      gas: 2000000,
+      gasPrice: 1200000000, // 1.2 gwei (minimal for remaining funds)
+      timeout: 120000, // 2 minutes
     },
     base: {
       url: process.env.BASE_RPC_URL || "https://mainnet.base.org",

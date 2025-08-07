@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'packages/frontend/**'
+      - '.github/workflows/deploy.yml'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'packages/frontend/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+          
+      - name: Install root dependencies
+        run: npm ci
+        
+      - name: Install frontend dependencies
+        working-directory: ./packages/frontend
+        run: npm ci
+        
+      - name: Build frontend
+        working-directory: ./packages/frontend
+        run: npm run build
+        env:
+          # Contract addresses - update these with your deployed contract addresses
+          NEXT_PUBLIC_TOKEN_ADDRESS_BASE_SEPOLIA: ${{ vars.TOKEN_ADDRESS_BASE_SEPOLIA || '0xCD868868d558e610091a249451ce95689038b421' }}
+          NEXT_PUBLIC_PUBLIC_AIRDROP_ADDRESS_BASE_SEPOLIA: ${{ vars.PUBLIC_AIRDROP_ADDRESS_BASE_SEPOLIA || '0x84ed9cFaBC7639bfd4e1771E71387e394e16762b' }}
+          
+          # WalletConnect Project ID
+          NEXT_PUBLIC_PROJECT_ID: ${{ vars.WALLETCONNECT_PROJECT_ID || 'b084a5e67fd143b7a3314c58b954ea48' }}
+          
+          # App configuration
+          NEXT_PUBLIC_APP_NAME: "DeFi Token Suite"
+          NEXT_PUBLIC_APP_DESCRIPTION: "Complete DeFi token management platform"
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./packages/frontend/out
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

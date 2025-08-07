@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark mode only - no light mode variables needed */
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --card: 224 71% 6%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 6%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 210 40% 55%;
+    --primary-foreground: 213 31% 91%;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 213 31% 91%;
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 11% 65%;
+    --accent: 215 28% 17%;
+    --accent-foreground: 213 31% 91%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 213 31% 91%;
+    --border: 215 28% 18%;
+    --input: 215 28% 17%;
+    --ring: 216 34% 17%;
+    --radius: 0.5rem;
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted/30;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
+
+/* Gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading spinner */
+.spinner {
+  @apply animate-spin rounded-full border-2 border-primary/20 border-t-primary;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Web3 specific styles */
+.wallet-button {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  @apply focus:outline-none focus:ring-2 focus:ring-primary/50;
+  @apply border border-primary/20;
+}
+
+.network-badge {
+  @apply px-2 py-1 rounded-full text-xs font-medium;
+  @apply bg-secondary text-secondary-foreground;
+  @apply border border-border/50;
+}
+
+.transaction-hash {
+  @apply font-mono text-sm break-all;
+  @apply text-muted-foreground hover:text-foreground;
+  @apply transition-colors duration-200;
+}
+
+/* Enhanced contrast utilities */
+.text-high-contrast {
+  @apply text-foreground font-medium;
+}
+
+.bg-card-enhanced {
+  @apply bg-card border border-border/20 shadow-sm;
+}
+
+/* Button improvements */
+.btn-outline-enhanced {
+  @apply border-2 border-border/60 hover:border-border;
+}
+
+/* Force better contrast in dark mode */
+.dark {
+  color-scheme: dark;
+}
+
+.dark .bg-white {
+  @apply bg-slate-900 !important;
+}
+
+.dark .text-gray-900 {
+  @apply text-slate-100 !important;
+}
+
+.dark .text-gray-800 {
+  @apply text-slate-200 !important;
+}
+
+.dark .text-gray-700 {
+  @apply text-slate-300 !important;
+}
+
+.dark .text-gray-600 {
+  @apply text-slate-400 !important;
+}
+
+.dark .text-gray-500 {
+  @apply text-slate-400 !important;
+}
+
+.dark .border-gray-200 {
+  @apply border-slate-700 !important;
+}
+
+.dark .border-gray-300 {
+  @apply border-slate-600 !important;
+}
+
+.dark .bg-gray-50 {
+  @apply bg-slate-800 !important;
+}
+
+.dark .bg-gray-100 {
+  @apply bg-slate-800 !important;
+}
+
+.dark .bg-gray-200 {
+  @apply bg-slate-700 !important;
+}
