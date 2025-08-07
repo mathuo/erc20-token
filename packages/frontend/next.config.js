@@ -4,6 +4,8 @@ const nextConfig = {
   swcMinify: true,
   output: 'export',
   trailingSlash: true,
+  basePath: process.env.GITHUB_PAGES ? '/erc20-token' : '',
+  assetPrefix: process.env.GITHUB_PAGES ? '/erc20-token/' : '',
   images: {
     unoptimized: true,
   },

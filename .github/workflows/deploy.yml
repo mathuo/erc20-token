@@ -47,9 +47,14 @@ jobs:
         working-directory: ./packages/frontend
         run: npm run build
         env:
+          # Enable GitHub Pages basePath configuration
+          GITHUB_PAGES: true
+          
           # Contract addresses - update these with your deployed contract addresses
           NEXT_PUBLIC_TOKEN_ADDRESS_BASE_SEPOLIA: ${{ vars.TOKEN_ADDRESS_BASE_SEPOLIA || '0xCD868868d558e610091a249451ce95689038b421' }}
           NEXT_PUBLIC_PUBLIC_AIRDROP_ADDRESS_BASE_SEPOLIA: ${{ vars.PUBLIC_AIRDROP_ADDRESS_BASE_SEPOLIA || '0x84ed9cFaBC7639bfd4e1771E71387e394e16762b' }}
+          NEXT_PUBLIC_TOKEN_ADDRESS_SEPOLIA: ${{ vars.TOKEN_ADDRESS_SEPOLIA || '0x0671e006DD31b41F4f76E7aC1Aa86baf6da5f473' }}
+          NEXT_PUBLIC_PUBLIC_AIRDROP_ADDRESS_SEPOLIA: ${{ vars.PUBLIC_AIRDROP_ADDRESS_SEPOLIA || '0xF97d918c3381da3D199F9f120985aDACF6D792C7' }}
           
           # WalletConnect Project ID
           NEXT_PUBLIC_PROJECT_ID: ${{ vars.WALLETCONNECT_PROJECT_ID || 'b084a5e67fd143b7a3314c58b954ea48' }}
