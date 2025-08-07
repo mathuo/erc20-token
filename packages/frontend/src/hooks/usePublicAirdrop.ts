@@ -185,8 +185,8 @@ export function useClaimTokens() {
   };
 }
 
-// Hook to get multiple campaigns info at once
-export function useMultipleCampaignsInfo(campaignIds: bigint[]) {
+// Hook to get active campaign IDs
+export function useActiveCampaigns() {
   const chainId = useChainId() as ChainId;
   const contractAddress = getContractAddress(chainId, 'PublicAirdrop');
 
@@ -196,30 +196,13 @@ export function useMultipleCampaignsInfo(campaignIds: bigint[]) {
     functionName: 'getActiveCampaigns',
     query: {
       enabled: Boolean(contractAddress),
-      select: (data: bigint[]) => data,
+      select: (data: unknown) => data as bigint[],
     },
   });
 
-  // Individual campaign queries
-  const campaignQueries = campaignIds.map(campaignId => 
-    useReadContract({
-      address: contractAddress as `0x${string}`,
-      abi: PublicAirdropABI,
-      functionName: 'getCampaignInfo',
-      args: [campaignId],
-      query: {
-        enabled: Boolean(contractAddress && campaignId),
-      },
-    })
-  );
-
   return {
-    campaigns: campaignQueries.map((query, index) => ({
-      id: campaignIds[index],
-      data: query.data,
-      isLoading: query.isLoading,
-      error: query.error,
-    })),
-    isLoading: campaignQueries.some(q => q.isLoading),
+    campaignIds: campaigns.data || [],
+    isLoading: campaigns.isLoading,
+    error: campaigns.error,
   };
 }
