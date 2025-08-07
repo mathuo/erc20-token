@@ -2,6 +2,8 @@
 
 A comprehensive monorepo for DeFi token management with smart contracts and web interface.
 
+![](website.png)
+
 ## 📋 Overview
 
 This monorepo contains:
