@@ -33,6 +33,14 @@ export const CONTRACT_ADDRESSES = {
     MerkleAirdrop: process.env.NEXT_PUBLIC_MERKLE_AIRDROP_ADDRESS_BASE_SEPOLIA || '',
     PublicAirdrop: process.env.NEXT_PUBLIC_PUBLIC_AIRDROP_ADDRESS_BASE_SEPOLIA || '',
   },
+
+  // Hoodi Testnet
+  560048: {
+    MyToken: '0xE41b45f227134A8cA5fd19CB2c263d27e0cE533B',
+    BatchAirdrop: '0xD763F2ac003fbe23Ba2A10fc9Ef1037cB4721308',
+    MerkleAirdrop: '0x42128Ea03543239CFa813822F7C6c629112bB3a6',
+    PublicAirdrop: '0xac1Ac1bd8d82531d97B86c40b5933DbDF1Fa91A1',
+  },
   
   // Localhost
   31337: {
@@ -60,5 +68,6 @@ export const NETWORK_NAMES = {
   8453: 'Base',
   11155111: 'Sepolia',
   84532: 'Base Sepolia',
+  560048: 'Hoodi Testnet',
   31337: 'Localhost'
 } as const

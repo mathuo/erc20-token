@@ -11,6 +11,7 @@
     "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
     "deploy:base": "hardhat run scripts/deploy.js --network base",
     "deploy:base-sepolia": "hardhat run scripts/deploy.js --network base-sepolia",
+    "deploy:hoodi": "hardhat run scripts/deploy.js --network hoodi",
     "deploy:localhost": "hardhat run scripts/deploy.js --network localhost",
     "create-pool:base": "hardhat run scripts/createPool.js --network base",
     "add-liquidity:base": "hardhat run scripts/addLiquidity.js --network base",
