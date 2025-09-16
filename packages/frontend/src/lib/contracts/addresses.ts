@@ -20,18 +20,18 @@ export const CONTRACT_ADDRESSES = {
   
   // Sepolia Testnet
   11155111: {
-    MyToken: process.env.NEXT_PUBLIC_TOKEN_ADDRESS_SEPOLIA || '',
+    MyToken: '0x42128Ea03543239CFa813822F7C6c629112bB3a6',
     BatchAirdrop: process.env.NEXT_PUBLIC_BATCH_AIRDROP_ADDRESS_SEPOLIA || '',
     MerkleAirdrop: process.env.NEXT_PUBLIC_MERKLE_AIRDROP_ADDRESS_SEPOLIA || '',
-    PublicAirdrop: process.env.NEXT_PUBLIC_PUBLIC_AIRDROP_ADDRESS_SEPOLIA || '',
+    PublicAirdrop: '0x001f2D4CEfC364CCe7B9db788f1C3Bb790Aff097',
   },
-  
+
   // Base Sepolia Testnet
   84532: {
-    MyToken: process.env.NEXT_PUBLIC_TOKEN_ADDRESS_BASE_SEPOLIA || '',
+    MyToken: '0xCD868868d558e610091a249451ce95689038b421',
     BatchAirdrop: process.env.NEXT_PUBLIC_BATCH_AIRDROP_ADDRESS_BASE_SEPOLIA || '',
     MerkleAirdrop: process.env.NEXT_PUBLIC_MERKLE_AIRDROP_ADDRESS_BASE_SEPOLIA || '',
-    PublicAirdrop: process.env.NEXT_PUBLIC_PUBLIC_AIRDROP_ADDRESS_BASE_SEPOLIA || '',
+    PublicAirdrop: '0x84ed9cFaBC7639bfd4e1771E71387e394e16762b',
   },
 
   // Hoodi Testnet

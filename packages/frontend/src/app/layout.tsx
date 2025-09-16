@@ -29,14 +29,14 @@ export default function RootLayout({
           <div className="min-h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
             {children}
           </div>
-          <Toaster 
+          <Toaster
             position="top-right"
             toastOptions={{
               duration: 4000,
               style: {
-                background: 'var(--background)',
-                color: 'var(--foreground)',
-                border: '1px solid var(--border)',
+                background: 'rgb(15 23 42)', // slate-900
+                color: 'rgb(248 250 252)', // slate-50
+                border: '1px solid rgb(51 65 85)', // slate-600
               },
             }}
           />
