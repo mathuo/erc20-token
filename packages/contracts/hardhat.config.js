@@ -49,6 +49,20 @@ module.exports = {
       gasPrice: 1200000000, // 1.2 gwei
       timeout: 120000, // 2 minutes
     },
+    "arbitrum-sepolia": {
+      url: process.env.ARBITRUM_SEPOLIA_RPC_URL || "https://sepolia-rollup.arbitrum.io/rpc",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 421614,
+      gasPrice: "auto",
+      timeout: 120000, // 2 minutes
+    },
+    "optimism-sepolia": {
+      url: process.env.OPTIMISM_SEPOLIA_RPC_URL || "https://sepolia.optimism.io",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 11155420,
+      gasPrice: "auto",
+      timeout: 120000, // 2 minutes
+    },
   },
   etherscan: {
     apiKey: {
@@ -56,6 +70,8 @@ module.exports = {
       sepolia: process.env.ETHERSCAN_API_KEY,
       base: process.env.BASESCAN_API_KEY,
       "base-sepolia": process.env.BASESCAN_API_KEY,
+      "arbitrum-sepolia": process.env.ARBISCAN_API_KEY,
+      "optimism-sepolia": process.env.OPTIMISTIC_ETHERSCAN_API_KEY,
     },
     customChains: [
       {
@@ -72,6 +88,22 @@ module.exports = {
         urls: {
           apiURL: "https://api-sepolia.basescan.org/api",
           browserURL: "https://sepolia.basescan.org",
+        },
+      },
+      {
+        network: "arbitrum-sepolia",
+        chainId: 421614,
+        urls: {
+          apiURL: "https://api-sepolia.arbiscan.io/api",
+          browserURL: "https://sepolia.arbiscan.io",
+        },
+      },
+      {
+        network: "optimism-sepolia",
+        chainId: 11155420,
+        urls: {
+          apiURL: "https://api-sepolia-optimistic.etherscan.io/api",
+          browserURL: "https://sepolia-optimism.etherscan.io",
         },
       },
     ],

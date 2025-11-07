@@ -7,7 +7,7 @@ This file contains information for Claude to understand the monorepo structure a
 This is a comprehensive DeFi token monorepo with:
 - **Smart Contracts Package**: ERC-20 tokens with advanced airdrop functionality
 - **Frontend Package**: Next.js web interface for token management
-- **Multi-Network Support**: Ethereum, Base, and testnets
+- **Multi-Network Support**: Ethereum, Base, Arbitrum, Optimism, and testnets
 - **Complete DeFi Stack**: Airdrops, liquidity, bridging, treasury management
 
 ## Monorepo Structure
@@ -60,6 +60,9 @@ npm run deploy:ethereum         # Deploy to Ethereum mainnet
 npm run deploy:base            # Deploy to Base mainnet
 npm run deploy:sepolia         # Deploy to Sepolia testnet
 npm run deploy:base-sepolia    # Deploy to Base Sepolia testnet
+npm run deploy:arbitrum-sepolia # Deploy to Arbitrum Sepolia testnet
+npm run deploy:optimism-sepolia # Deploy to Optimism Sepolia testnet
+npm run deploy:hoodi           # Deploy to Hoodi testnet
 ```
 
 ### Package-specific Commands
@@ -72,6 +75,9 @@ npm run deploy:ethereum      # Deploy to Ethereum mainnet
 npm run deploy:base          # Deploy to Base mainnet
 npm run deploy:sepolia       # Deploy to Sepolia testnet
 npm run deploy:base-sepolia  # Deploy to Base Sepolia testnet
+npm run deploy:arbitrum-sepolia # Deploy to Arbitrum Sepolia testnet
+npm run deploy:optimism-sepolia # Deploy to Optimism Sepolia testnet
+npm run deploy:hoodi         # Deploy to Hoodi testnet
 
 # Airdrop operations
 npm run deploy-airdrop           # Deploy airdrop contracts
@@ -104,6 +110,8 @@ npm run treasury                # Run treasury management operations
 npm run export-abis             # Export ABIs for frontend
 npm run verify:ethereum         # Verify contracts on Etherscan
 npm run verify:base            # Verify contracts on Basescan
+npm run verify:arbitrum-sepolia # Verify contracts on Arbiscan
+npm run verify:optimism-sepolia # Verify contracts on Optimistic Etherscan
 ```
 
 #### Frontend Package (`packages/frontend/`)
@@ -166,11 +174,16 @@ ETHEREUM_RPC_URL=https://eth-mainnet.alchemyapi.io/v2/your-api-key
 SEPOLIA_RPC_URL=https://ethereum-sepolia-rpc.publicnode.com
 BASE_RPC_URL=https://mainnet.base.org
 BASE_SEPOLIA_RPC_URL=https://sepolia.base.org
+ARBITRUM_SEPOLIA_RPC_URL=https://sepolia-rollup.arbitrum.io/rpc
+OPTIMISM_SEPOLIA_RPC_URL=https://sepolia.optimism.io
+HOODI_RPC_URL=https://rpc.hoodi.io
 
 # Authentication
 PRIVATE_KEY=your_private_key_without_0x_prefix
 ETHERSCAN_API_KEY=your_etherscan_api_key
 BASESCAN_API_KEY=your_basescan_api_key
+ARBISCAN_API_KEY=your_arbiscan_api_key
+OPTIMISTIC_ETHERSCAN_API_KEY=your_optimistic_etherscan_api_key
 
 # Token Configuration
 TOKEN_NAME=MyToken

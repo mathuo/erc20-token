@@ -12,6 +12,8 @@
     "deploy:base": "hardhat run scripts/deploy.js --network base",
     "deploy:base-sepolia": "hardhat run scripts/deploy.js --network base-sepolia",
     "deploy:hoodi": "hardhat run scripts/deploy.js --network hoodi",
+    "deploy:arbitrum-sepolia": "hardhat run scripts/deploy.js --network arbitrum-sepolia",
+    "deploy:optimism-sepolia": "hardhat run scripts/deploy.js --network optimism-sepolia",
     "deploy:localhost": "hardhat run scripts/deploy.js --network localhost",
     "create-pool:base": "hardhat run scripts/createPool.js --network base",
     "add-liquidity:base": "hardhat run scripts/addLiquidity.js --network base",
@@ -36,6 +38,8 @@
     "verify:ethereum": "hardhat verify --network ethereum",
     "verify:base": "hardhat verify --network base",
     "verify:sepolia": "hardhat verify --network sepolia",
+    "verify:arbitrum-sepolia": "hardhat verify --network arbitrum-sepolia",
+    "verify:optimism-sepolia": "hardhat verify --network optimism-sepolia",
     "clean": "rm -rf cache artifacts",
     "export-abis": "node scripts/exportABIs.js"
   },

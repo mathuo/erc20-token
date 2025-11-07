@@ -19,6 +19,8 @@ import { supportedChains } from '@/lib/wagmi/config';
 const NETWORK_SLUGS = {
   'sepolia': 11155111,
   'base-sepolia': 84532,
+  'arbitrum-sepolia': 421614,
+  'optimism-sepolia': 11155420,
   'hoodi': 560048,
   'ethereum': 1,
   'base': 8453,
@@ -84,7 +86,7 @@ export default function NetworkPageClient({ networkSlug }: NetworkPageClientProp
     }
 
     try {
-      const campaignId = BigInt(targetChainId === 11155111 ? 1 : 4);
+      const campaignId = BigInt(1); // All networks use campaign ID 1
       claim(campaignId);
       toast.success('Tokens claimed successfully!', {
         description: 'You received MTK tokens',
@@ -186,7 +188,7 @@ export default function NetworkPageClient({ networkSlug }: NetworkPageClientProp
         {contractAddress && (
           <div className="max-w-md mx-auto">
             <CampaignCard
-              campaignId={BigInt(targetChainId === 11155111 ? 1 : 4)} // Sepolia uses campaign 1, others use 4
+              campaignId={BigInt(1)} // All networks use campaign ID 1
               tokenSymbol="MTK"
               onClaim={(campaignId) => handleClaim()}
               isClaimPending={isLoading}

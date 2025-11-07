@@ -14,6 +14,8 @@ export async function generateStaticParams() {
   return [
     { networkSlug: 'sepolia' },
     { networkSlug: 'base-sepolia' },
+    { networkSlug: 'arbitrum-sepolia' },
+    { networkSlug: 'optimism-sepolia' },
     { networkSlug: 'hoodi' },
     { networkSlug: 'ethereum' },
     { networkSlug: 'base' },

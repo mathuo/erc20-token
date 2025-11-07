@@ -190,6 +190,32 @@ export const TESTNET_CONFIGS: Record<string, NetworkConfig> = {
     ],
     blockExplorerUrls: ['https://sepolia.basescan.org'],
   },
+  'arbitrum-sepolia': {
+    chainId: '0x66eee', // 421614 in hex
+    chainName: 'Arbitrum Sepolia Testnet',
+    nativeCurrency: {
+      name: 'Sepolia Ether (Testnet)',
+      symbol: 'ETH',
+      decimals: 18,
+    },
+    rpcUrls: [
+      'https://sepolia-rollup.arbitrum.io/rpc',
+    ],
+    blockExplorerUrls: ['https://sepolia.arbiscan.io'],
+  },
+  'optimism-sepolia': {
+    chainId: '0xaa37dc', // 11155420 in hex
+    chainName: 'Optimism Sepolia Testnet',
+    nativeCurrency: {
+      name: 'Sepolia Ether (Testnet)',
+      symbol: 'ETH',
+      decimals: 18,
+    },
+    rpcUrls: [
+      'https://sepolia.optimism.io',
+    ],
+    blockExplorerUrls: ['https://sepolia-optimism.etherscan.io'],
+  },
   hoodi: {
     chainId: '0x88930', // 560048 in hex
     chainName: 'Hoodi Testnet',

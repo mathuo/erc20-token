@@ -34,6 +34,22 @@ export const CONTRACT_ADDRESSES = {
     PublicAirdrop: '0x84ed9cFaBC7639bfd4e1771E71387e394e16762b',
   },
 
+  // Arbitrum Sepolia Testnet
+  421614: {
+    MyToken: '0xE41b45f227134A8cA5fd19CB2c263d27e0cE533B',
+    BatchAirdrop: '',
+    MerkleAirdrop: '',
+    PublicAirdrop: '0xD763F2ac003fbe23Ba2A10fc9Ef1037cB4721308',
+  },
+
+  // Optimism Sepolia Testnet  
+  11155420: {
+    MyToken: '0x42128Ea03543239CFa813822F7C6c629112bB3a6',
+    BatchAirdrop: '',
+    MerkleAirdrop: '',
+    PublicAirdrop: '0xac1Ac1bd8d82531d97B86c40b5933DbDF1Fa91A1',
+  },
+
   // Hoodi Testnet
   560048: {
     MyToken: '0xE41b45f227134A8cA5fd19CB2c263d27e0cE533B',
@@ -68,6 +84,8 @@ export const NETWORK_NAMES = {
   8453: 'Base',
   11155111: 'Sepolia',
   84532: 'Base Sepolia',
+  421614: 'Arbitrum Sepolia',
+  11155420: 'Optimism Sepolia',
   560048: 'Hoodi Testnet',
   31337: 'Localhost'
 } as const

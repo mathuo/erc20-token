@@ -160,18 +160,44 @@ export function useClaimTokens() {
     hash 
   });
 
-  const claim = React.useCallback((campaignId: bigint) => {
+  const claim = React.useCallback(async (campaignId: bigint) => {
     if (!contractAddress) {
       throw new Error('Contract address not found for this network');
     }
     
-    writeContract({
-      address: contractAddress as `0x${string}`,
-      abi: PublicAirdropABI,
-      functionName: 'claim',
-      args: [campaignId],
-    });
-  }, [contractAddress, writeContract]);
+    try {
+      // Set explicit gas parameters for L2 networks to help with estimation
+      const gasConfig = (() => {
+        switch (chainId) {
+          case 421614: // Arbitrum Sepolia
+            return {
+              gas: BigInt(500000),
+              gasPrice: undefined, // Let Arbitrum handle this
+            };
+          case 11155420: // Optimism Sepolia
+            return {
+              gas: BigInt(300000),
+              gasPrice: undefined, // Let Optimism handle this
+            };
+          default:
+            return {
+              gas: BigInt(200000), // Standard gas limit
+            };
+        }
+      })();
+
+      writeContract({
+        address: contractAddress as `0x${string}`,
+        abi: PublicAirdropABI,
+        functionName: 'claim',
+        args: [campaignId],
+        ...gasConfig,
+      });
+    } catch (error) {
+      console.error('Error in claim function:', error);
+      throw error;
+    }
+  }, [contractAddress, writeContract, chainId]);
 
   return {
     claim,

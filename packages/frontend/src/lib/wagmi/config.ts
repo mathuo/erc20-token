@@ -1,5 +1,5 @@
 import { getDefaultConfig } from '@rainbow-me/rainbowkit'
-import { mainnet, base, sepolia, baseSepolia } from 'wagmi/chains'
+import { mainnet, base, sepolia, baseSepolia, arbitrumSepolia, optimismSepolia } from 'wagmi/chains'
 
 // Define Hoodi testnet chain
 const hoodi = {
@@ -24,7 +24,7 @@ const hoodi = {
 export const config = getDefaultConfig({
   appName: process.env.NEXT_PUBLIC_APP_NAME || 'DeFi Token Suite',
   projectId: process.env.NEXT_PUBLIC_PROJECT_ID!,
-  chains: [mainnet, base, sepolia, baseSepolia, hoodi],
+  chains: [mainnet, base, sepolia, baseSepolia, arbitrumSepolia, optimismSepolia, hoodi],
   ssr: true,
 })
 
@@ -56,6 +56,20 @@ export const supportedChains = [
     name: 'Base Sepolia',
     shortName: 'BSEP',
     icon: '🔵',
+    isTestnet: true,
+  },
+  {
+    ...arbitrumSepolia,
+    name: 'Arbitrum Sepolia',
+    shortName: 'ARBSEP',
+    icon: '🔷',
+    isTestnet: true,
+  },
+  {
+    ...optimismSepolia,
+    name: 'Optimism Sepolia',
+    shortName: 'OPSEP',
+    icon: '🔴',
     isTestnet: true,
   },
   {

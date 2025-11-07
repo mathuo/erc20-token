@@ -34,6 +34,10 @@ async function main() {
   await token.waitForDeployment();
 
   const tokenAddress = await token.getAddress();
+  
+  // Add a small delay for Optimism network propagation
+  console.log("Waiting for contract to be fully available...");
+  await new Promise(resolve => setTimeout(resolve, 3000));
   const actualTotalSupply = await token.totalSupply();
   const maxSupplyFromContract = await token.MAX_SUPPLY();
   
