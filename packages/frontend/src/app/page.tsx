@@ -13,7 +13,7 @@ const NETWORKS = [
     slug: 'sepolia',
     chainId: 11155111,
     name: 'Sepolia Testnet',
-    icon: '⚡',
+    icon: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png',
     description: 'Ethereum testnet for development',
     color: 'from-yellow-500 to-orange-500',
     bgColor: 'bg-yellow-900/20 border-yellow-600/30',
@@ -23,7 +23,7 @@ const NETWORKS = [
     slug: 'base-sepolia',
     chainId: 84532,
     name: 'Base Sepolia',
-    icon: '🔵',
+    icon: 'https://avatars.githubusercontent.com/u/108554348?s=280&v=4',
     description: 'Base testnet built on Optimism',
     color: 'from-blue-500 to-indigo-500',
     bgColor: 'bg-blue-900/20 border-blue-600/30',
@@ -33,7 +33,7 @@ const NETWORKS = [
     slug: 'arbitrum-sepolia',
     chainId: 421614,
     name: 'Arbitrum Sepolia',
-    icon: '🔷',
+    icon: 'https://s2.coinmarketcap.com/static/img/coins/64x64/11841.png',
     description: 'Arbitrum L2 testnet',
     color: 'from-cyan-500 to-teal-500',
     bgColor: 'bg-cyan-900/20 border-cyan-600/30',
@@ -43,7 +43,7 @@ const NETWORKS = [
     slug: 'optimism-sepolia',
     chainId: 11155420,
     name: 'Optimism Sepolia',
-    icon: '🔴',
+    icon: 'https://s2.coinmarketcap.com/static/img/coins/64x64/11840.png',
     description: 'Optimism L2 testnet',
     color: 'from-red-500 to-rose-500',
     bgColor: 'bg-red-900/20 border-red-600/30',
@@ -53,7 +53,7 @@ const NETWORKS = [
     slug: 'hoodi',
     chainId: 560048,
     name: 'Hoodi Testnet',
-    icon: '🔮',
+    icon: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png',
     description: 'New Ethereum testnet',
     color: 'from-purple-500 to-pink-500',
     bgColor: 'bg-purple-900/20 border-purple-600/30',
@@ -121,7 +121,17 @@ export default function HomePage() {
                   {/* Network Icon */}
                   <div className="text-center mb-6">
                     <div className="relative inline-block">
-                      <div className="text-6xl mb-4">{network.icon}</div>
+                      {network.icon.startsWith('http') ? (
+                        <div className="w-16 h-16 mb-4 mx-auto">
+                          <img 
+                            src={network.icon} 
+                            alt={network.name}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <div className="text-6xl mb-4">{network.icon}</div>
+                      )}
                       {isConnected && (
                         <div className="absolute -top-2 -right-2">
                           <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
@@ -201,7 +211,17 @@ export default function HomePage() {
                 href={`/network/${network.slug}`}
                 className="group flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-lg transition-colors"
               >
-                <span>{network.icon}</span>
+                {network.icon.startsWith('http') ? (
+                  <div className="w-5 h-5">
+                    <img 
+                      src={network.icon} 
+                      alt={network.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <span>{network.icon}</span>
+                )}
                 <span className="text-slate-300 group-hover:text-white transition-colors">
                   {network.name}
                 </span>

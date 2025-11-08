@@ -40,6 +40,7 @@ export default function NetworkPageClient({ networkSlug }: NetworkPageClientProp
 
   const [targetChainId, setTargetChainId] = useState<number | null>(null);
   const [isValidNetwork, setIsValidNetwork] = useState(false);
+  const [userChangedNetwork, setUserChangedNetwork] = useState(false);
 
   // Validate network slug and get chain ID
   useEffect(() => {
@@ -49,6 +50,8 @@ export default function NetworkPageClient({ networkSlug }: NetworkPageClientProp
     if (networkChainId) {
       setTargetChainId(networkChainId);
       setIsValidNetwork(true);
+      // Reset user changed network flag when navigating to a new page
+      setUserChangedNetwork(false);
     } else {
       setIsValidNetwork(false);
       toast.error(`Invalid network: ${networkSlug}`);
@@ -56,12 +59,24 @@ export default function NetworkPageClient({ networkSlug }: NetworkPageClientProp
     }
   }, [networkSlug, router]);
 
-  // Auto-switch to target network if connected to wrong network
+  // Auto-switch to target network if connected to wrong network (but not if user manually changed)
   useEffect(() => {
-    if (isConnected && targetChainId && chainId !== targetChainId) {
+    if (isConnected && targetChainId && chainId !== targetChainId && !userChangedNetwork) {
       switchChain({ chainId: targetChainId });
     }
-  }, [isConnected, targetChainId, chainId, switchChain]);
+  }, [isConnected, targetChainId, chainId, switchChain, userChangedNetwork]);
+
+  // Handle network changes from the dropdown
+  const handleNetworkChange = (newChainId: number) => {
+    setUserChangedNetwork(true);
+    
+    // Find the network slug for the new chain ID
+    const networkEntry = Object.entries(NETWORK_SLUGS).find(([slug, chainId]) => chainId === newChainId);
+    if (networkEntry) {
+      const [newSlug] = networkEntry;
+      router.push(`/network/${newSlug}`);
+    }
+  };
 
   // Get network info
   const networkInfo = supportedChains.find(chain => chain.id === targetChainId);
@@ -139,7 +154,17 @@ export default function NetworkPageClient({ networkSlug }: NetworkPageClientProp
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="text-4xl">{networkInfo.icon}</span>
+            {networkInfo.icon.startsWith('http') ? (
+              <div className="w-12 h-12">
+                <img 
+                  src={networkInfo.icon} 
+                  alt={networkInfo.name}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            ) : (
+              <span className="text-4xl">{networkInfo.icon}</span>
+            )}
             <h1 className="text-4xl font-bold text-white">
               {networkInfo.name} Token Faucet
             </h1>
@@ -150,7 +175,7 @@ export default function NetworkPageClient({ networkSlug }: NetworkPageClientProp
           <div className="mt-4 flex flex-col items-center gap-4">
             <div className="flex items-center gap-4">
               <span className="text-sm text-slate-500">Network:</span>
-              <NetworkSelector />
+              <NetworkSelector onNetworkChange={handleNetworkChange} />
             </div>
             {/* MetaMask integration buttons */}
             <div className="flex flex-wrap justify-center gap-3">
